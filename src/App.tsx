@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { FC } from 'react';
+import { BrowserRouter, Route, Switch, RouteComponentProps } from 'react-router-dom';
+import  Button  from 'antd/lib/button';
 import './App.css';
+import routes from './config/routes';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App: FC = () => (
+  <div className="App">
+    <Button type="primary">Button</Button>
+    <BrowserRouter>
+      <Switch>
+        {routes.map((route, index) => {
+          return (
+            <Route
+              key={index}
+              path={route.path}
+              exact={route.exact}
+              render={(props: RouteComponentProps<any>) => (
+                <route.component
+                  name={route.name}
+                  {...props}
+                  {...route.props}
+                />
+              )}
+            />
+          );
+        })}
+      </Switch>
+    </BrowserRouter>
+  </div>
+);
 
 export default App;
