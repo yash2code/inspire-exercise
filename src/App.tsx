@@ -1,12 +1,10 @@
 import React, { FC } from 'react';
 import { BrowserRouter, Route, Switch, RouteComponentProps } from 'react-router-dom';
-import  Button  from 'antd/lib/button';
 import './App.css';
 import routes from './config/routes';
 
 const App: FC = () => (
   <div className="App">
-    <Button type="primary">Button</Button>
     <BrowserRouter>
       <Switch>
         {routes.map((route, index) => {
