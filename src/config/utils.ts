@@ -15,3 +15,17 @@ export const getLiteratureList = async () => {
 
   return data
 }
+
+export const getLiteratureItem = async (id:any) => {
+  const data = await fetch(`${URL}/${id}`)
+    .then((resp) => resp.json())
+    .then((resp) => {
+      return { data: resp }
+    })
+    .catch((e) => {
+      console.log(e.message)
+      return { data: {} }
+    })
+
+  return data
+}
